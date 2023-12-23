@@ -39,17 +39,10 @@ export const getGrid = async (): Promise<Grid> => {
 export const clearGrid = async () => {
   const pixels = db.list<string>({ prefix: [KEYS_DB.tiles] });
   const bc = new BroadcastChannel("PIXEL_UPDATE");
-
   for await (const pixel of pixels) {
-    await db.delete([KEYS_DB.tiles, pixel.key[1]]);
+    db.delete([KEYS_DB.tiles, pixel.key[1]]);
+    const { tiles, versionstamps } = await getGrid();
+    bc.postMessage({ type: "delete", tiles, versionstamps });
   }
-
-  const { tiles, versionstamps } = await getGrid();
-  bc.postMessage({ type: "delete", tiles, versionstamps });
-
   setTimeout(() => bc.close(), 5);
-  return {
-    tiles,
-    versionstamps,
-  };
 };
