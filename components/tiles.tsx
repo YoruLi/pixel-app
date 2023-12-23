@@ -14,13 +14,21 @@ export default function Tiles({
 
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      if (data.type === "delete") {
-        grid.value = data.tiles;
-      } else {
-        const { index, color } = data;
-        const gridValue = grid.value;
-        grid.value = gridValue.with(index, color);
-      }
+      const { index, color } = data;
+      const gridValue = grid.value;
+      grid.value = gridValue.with(index, color);
+    };
+
+    return () => eventSource.close();
+  }, []);
+
+  useEffect(() => {
+    const eventSource = new EventSource("/api/listen-delete");
+
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+
+      grid.value = data.tiles;
     };
 
     return () => eventSource.close();
