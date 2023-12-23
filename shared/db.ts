@@ -38,7 +38,7 @@ export const getGrid = async (): Promise<Grid> => {
 
 export const clearGrid = async () => {
   const pixels = db.list<string>({ prefix: [KEYS_DB.tiles] });
-  const bc = new BroadcastChannel("PIXEL_DELETE");
+  const bc = new BroadcastChannel("PIXEL_UPDATE");
 
   for await (const pixel of pixels) {
     await db.delete([KEYS_DB.tiles, pixel.key[1]]);
