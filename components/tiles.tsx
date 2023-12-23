@@ -68,7 +68,7 @@ export default function Tiles({
           />
 
           {color !== COLORS_NAME.black ? (
-            <div className="absolute group-hover:block hidden bg-slate-400 -top-4 left-4 z-20">
+            <div className="absolute pointer-events-none group-hover:block hidden bg-slate-400 -top-4 left-4 z-20">
               {color}
             </div>
           ) : null}
