@@ -20,7 +20,7 @@ export const KEYS_DB = {
 } as const;
 
 export const ACTIONS_NAME = {
-  CLEAR_ALL: "CLEAR ALL",
+  CLEAR_ALL: "CLEAR_ALL",
 } as const;
 
 export const ACTIONS = Object.values(ACTIONS_NAME);
