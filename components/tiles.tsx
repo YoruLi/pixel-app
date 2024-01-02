@@ -49,6 +49,7 @@ export default function Tiles({
     <div
       className="grid"
       style={`
+   
         width: ${WIDTH * PIXEL_SIZE}px;
         grid-template-columns: repeat(${WIDTH}, 1fr);
       `}
@@ -58,6 +59,7 @@ export default function Tiles({
           <div
             className="relative "
             style={`
+               border: 1px solid rgba(255,255,255, 0.1);
               width: ${PIXEL_SIZE}px;
               height: ${PIXEL_SIZE}px;
               background-color: ${color}
@@ -68,7 +70,7 @@ export default function Tiles({
           />
 
           {color !== COLORS_NAME.black ? (
-            <div className="absolute pointer-events-none group-hover:block hidden bg-slate-400 -top-4 left-4 z-20">
+            <div className="absolute pointer-events-none group-hover:block hidden rounded px-2 py-1 bg-white/50 -top-6 left-6 z-20 select-none">
               {color}
             </div>
           ) : null}

@@ -21,7 +21,6 @@ export const KEYS_DB = {
 
 export const ACTIONS_NAME = {
   CLEAR_ALL: "CLEAR ALL",
-  SIGN_OUT: "SIGN OUT",
 } as const;
 
 export const ACTIONS = Object.values(ACTIONS_NAME);

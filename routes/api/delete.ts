@@ -4,7 +4,13 @@ import { clearGrid } from "../../shared/db.ts";
 
 export const handler: Handlers = {
   async DELETE() {
-    const { tiles, versionstamps } = await clearGrid();
+    const result = await clearGrid();
+
+    if (!result) {
+      return Response.json({ error: "Unable to clear grid." });
+    }
+
+    const { tiles, versionstamps } = result;
 
     return Response.json({ tiles, versionstamps });
   },

@@ -14,9 +14,6 @@ export const handler: Handlers = {
         }
       );
     }
-    if (index < 0 || index >= WIDTH * HEIGHT) {
-      return Response.json({ error: "index out of bounds" }, { status: 400 });
-    }
 
     if (!COLORS.includes(color)) {
       return Response.json(
@@ -27,6 +24,10 @@ export const handler: Handlers = {
           status: 400,
         }
       );
+    }
+
+    if (index < 0 || index >= WIDTH * HEIGHT) {
+      return Response.json({ error: "Index out of bounds" }, { status: 400 });
     }
 
     const versionstamp = await updateGrid({ index, color });

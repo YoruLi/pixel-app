@@ -9,19 +9,23 @@ export default function ColorPicker({
   selectedColor: Signal<Color>;
 }) {
   return (
-    <footer className="flex space-x-1 fixed bottom-4 mx-auto justify-center w-full">
+    <footer className="flex space-x-2 fixed bottom-4 mx-auto justify-center w-full">
       {COLORS.map((color) => {
         return (
           <button
             className={`
-            w-8 h-8 border-4
+            w-8 h-8 rounded-full 
               ${
                 selectedColor.value === color
-                  ? "border-white"
-                  : "border-gray-800"
+                  ? " outline-2 outline outline-offset-[2px] outline-white"
+                  : "outline"
               }
             `}
-            style={`background-color: ${color};`}
+            style={{
+              backgroundColor: `${color}`,
+              boxShadow:
+                "inset 0 0 0 2px rgba(255, 255, 255, 0.12), 0 0 0.12em rgba(0, 0, 0, 0.12)",
+            }}
             onClick={() => {
               selectedColor.value = color;
             }}
